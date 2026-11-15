@@ -1,43 +1,921 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-		/>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tema 3 - Magnitudes y Unidades Radiológicas</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Liberation+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    body, .reveal {
+      font-family: 'Roboto', 'Liberation Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: #000000;
+      text-align: left;
+    }
+    .reveal .slides {
+      text-align: left;
+    }
+    .reveal .slides section {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 960px !important;
+      height: 700px !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      box-sizing: border-box;
+      background-color: #ffffff;
+      overflow: hidden;
+      color: #000000;
+    }
+    .reveal .slides section.parte1-slide {
+      font-family: 'Liberation Sans', Arial, sans-serif;
+    }
+    .reveal .slides section.parte2-slide {
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    }
+    .reveal .slides section * {
+      box-sizing: border-box;
+    }
+    .reveal table:not(.std-table):not(.open-table) {
+      margin: 0;
+      border-collapse: collapse;
+    }
+    .reveal table:not(.std-table):not(.open-table) td, .reveal table:not(.std-table):not(.open-table) th {
+      border: none;
+      padding: 0;
+    }
+    .reveal img {
+      margin: 0 !important;
+      max-width: none !important;
+      max-height: none !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+    .math-formula {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 20px;
+      color: #000000;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .math-formula .frac {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      vertical-align: middle;
+      font-size: 0.9em;
+    }
+    .math-formula .frac .num {
+      border-bottom: 1.2px solid #000;
+      padding: 0 3px 1px 3px;
+      line-height: 1.05;
+    }
+    .math-formula .frac .den {
+      padding: 1px 3px 0 3px;
+      line-height: 1.05;
+    }
+    .math-formula .overdot {
+      position: relative;
+      display: inline-block;
+    }
+    .math-formula .overdot::after {
+      content: '˙';
+      position: absolute;
+      top: -0.45em;
+      left: 45%;
+      transform: translateX(-50%);
+      font-style: normal;
+      font-weight: bold;
+    }
+    .math-formula .overbar {
+      text-decoration: overline;
+    }
+    .math-formula .sum-wrap {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      vertical-align: middle;
+      line-height: 0.9;
+      margin: 0 2px;
+    }
+    .math-formula .sum-sym {
+      font-size: 1.35em;
+    }
+    .math-formula .sum-sub {
+      font-size: 0.65em;
+      margin-top: -2px;
+    }
 
-		<title>reveal.js</title>
+    /* Styles for Parte 2 */
+    .header-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 960px;
+      height: 67px;
+      background-color: #00b8ff;
+      color: #ffffff;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 67px;
+      padding-left: 51px;
+      box-sizing: border-box;
+      letter-spacing: 0.5px;
+      z-index: 2;
+      text-align: left;
+    }
 
-		<link rel="stylesheet" href="dist/reset.css" />
-		<link rel="stylesheet" href="dist/reveal.css" />
-		<link rel="stylesheet" href="dist/theme/black.css" />
+    .footer-line {
+      position: absolute;
+      top: 620px;
+      left: 0;
+      width: 843px;
+      height: 3px;
+      background-color: #00b8ff;
+      z-index: 2;
+    }
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="dist/plugin/highlight/monokai.css" />
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    .footer-logo {
+      position: absolute;
+      top: 627px;
+      left: 21px;
+      width: 75px;
+      height: 46px;
+      object-fit: contain;
+      z-index: 2;
+    }
 
-		<script src="dist/reveal.js"></script>
-		<script src="dist/plugin/notes.js"></script>
-		<script src="dist/plugin/markdown.js"></script>
-		<script src="dist/plugin/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+    .footer-text {
+      position: absolute;
+      top: 642px;
+      left: 116px;
+      width: 733px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 300;
+      color: #555555;
+      z-index: 2;
+    }
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
-			});
-		</script>
-	</body>
+    .footer-page {
+      position: absolute;
+      top: 642px;
+      right: 30px;
+      font-size: 12px;
+      font-weight: 300;
+      color: #555555;
+      text-align: right;
+      z-index: 2;
+    }
+
+    .reveal table.std-table {
+      border-collapse: collapse;
+      border: 1px solid #000000;
+      color: #000000;
+      text-align: left;
+    }
+
+    .reveal table.std-table th, .reveal table.std-table td {
+      border: 1px solid #000000 !important;
+      padding: 5px 8px !important;
+    }
+
+    .reveal table.open-table {
+      border-collapse: collapse;
+      border: none;
+      color: #000000;
+      text-align: left;
+    }
+
+    .reveal table.open-table th {
+      border-top: 1.5px solid #000000;
+      border-bottom: 1.5px solid #000000;
+      border-left: none;
+      border-right: none;
+      padding: 6px 8px;
+      font-weight: bold;
+    }
+
+    .reveal table.open-table td {
+      border: none;
+      padding: 5px 8px;
+    }
+
+    .reveal table.open-table tbody tr:last-child td {
+      border-bottom: 1.5px solid #000000;
+    }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section class="parte1-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+      <div style="position:absolute;left:48.0px;top:27.9px;width:864.0px;height:116.9px;box-sizing:border-box;padding:3.2px 6.9px 3.2px 6.9px;display:flex;flex-direction:column;justify-content:flex-end;z-index:10"><div style="margin:0;padding:0;font-size:49.67px;text-align:center;line-height:1.14"><span style="font-size:49.67px">TEMA 3</span></div></div><div style="position:absolute;left:48.0px;top:163.8px;width:864.0px;height:406.0px;box-sizing:border-box;padding:3.2px 6.9px 3.2px 6.9px;display:flex;flex-direction:column;justify-content:center;text-align:center;z-index:10"><div style="margin:0;padding:0;font-size:49.67px;line-height:1.14"><span style="font-size:49.67px">MAGNITUDES Y UNIDADES RADIOLÓGICAS</span></div></div><img src="assets/parte1_10000000000001800000010C7BD128F1.jpg" style="position:absolute;left:699.4px;top:17.0px;width:226.3px;height:153.5px;box-sizing:border-box;object-fit:fill;z-index:8;" alt=""/><img src="assets/parte1_100000000000010200000084C2ADFD20.jpg" style="position:absolute;left:26.6px;top:30.2px;width:234.0px;height:116.4px;box-sizing:border-box;object-fit:fill;z-index:8;" alt=""/>
+      
+      <div style="position:absolute;left:0px;top:620.0px;width:843.4px;height:0px;border-top:2.7px solid #00b8ff;z-index:5;"></div>
+      <img src="assets/parte1_10000000000000EF00000098E388084E.jpg" style="position:absolute;left:21.2px;top:627.1px;width:74.8px;height:46.3px;object-fit:contain;z-index:5;" alt="Sacyl"/>
+      <div style="position:absolute;left:116.6px;top:640.0px;width:733.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:left;line-height:1.15;z-index:5;">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Oct. 2025</div>
+      <div style="position:absolute;left:857.2px;top:640.0px;width:61.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:right;line-height:1.15;z-index:5;">1</div>
+    
+    </section>
+
+<section class="parte1-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;width:960px;height:66.7px;background-color:#00b8ff;color:#ffffff;font-family:'Roboto','Liberation Sans',sans-serif;font-size:36.5px;display:flex;align-items:center;padding-left:51.4px;box-sizing:border-box;z-index:5;">INTRODUCCIÓN HISTÓRICA</div><div style="position:absolute;left:48.0px;top:92.9px;width:864.0px;height:500.4px;box-sizing:border-box;border:1.2px solid #000000;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px;font-weight:bold">1875.</span><span style="font-size:20.32px">- Creación del </span><span style="font-size:20.32px;text-decoration:underline">BIMP</span><span style="font-size:20.32px"> para la normalización de los sistemas de magnitudes y unidades.</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:2.7px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px;font-weight:bold">1895.-</span><span style="font-size:20.32px"> Descubrimiento de los rayos X por W. C. Roentgen.</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:2.7px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px;font-weight:bold">1896.-</span><span style="font-size:20.32px"> Descubrimiento de la radiactividad por H. Becquerel (rayos uránicos - radiación emitida espontáneamente por sales de Uranilo).</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:2.7px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px;font-weight:bold">1922</span><span style="font-size:20.32px">.- Estudios epidemiológicos en radiólogos establecen que la incidencia de cáncer es más alta que en otros médicos. </span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:2.7px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px;font-weight:bold">1925.-</span><span style="font-size:20.32px"> Se crea la </span><span style="font-size:20.32px;font-weight:bold">ICRU</span><span style="font-size:20.32px"> (Comisión Internacional de Unidades de Medida y Radiación) . </span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:2.7px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px;font-weight:bold">1928.-</span><span style="font-size:20.32px"> Creación del Comité Internacional de Protección contra los Rayos X y el Radio. (Más tarde </span><span style="font-size:20.32px;font-weight:bold">ICRP</span><span style="font-size:20.32px">).</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:2.7px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px;font-weight:bold">1937-1952.-</span><span style="font-size:20.32px">La Guerra Mundial supone una interrupción total en materia de Protección contra las radiaciones ionizantes. </span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:2.7px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px;font-weight:bold">1953-1962. </span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:2.7px;line-height:1.05;padding-left:43.5px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:26.9px;flex-shrink:0">–</span><span style="flex:1;"><span style="font-size:20.32px">Se crea la ICRP (Comisión Internacional de Protección Radiológica). Encargada de elaborar fundamentos y recomendaciones en materia de protección radiológica .</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:2.7px;line-height:1.05;padding-left:43.5px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:26.9px;flex-shrink:0">–</span><span style="flex:1;"><span style="font-size:20.32px">ICRU define Exposición, Kerma, Dosis Absorbida (unidades Roentgen, rad,..).</span></span></div></div>
+      
+      <div style="position:absolute;left:0px;top:620.0px;width:843.4px;height:0px;border-top:2.7px solid #00b8ff;z-index:5;"></div>
+      <img src="assets/parte1_10000000000000EF00000098E388084E.jpg" style="position:absolute;left:21.2px;top:627.1px;width:74.8px;height:46.3px;object-fit:contain;z-index:5;" alt="Sacyl"/>
+      <div style="position:absolute;left:116.6px;top:640.0px;width:733.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:left;line-height:1.15;z-index:5;">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+      <div style="position:absolute;left:857.2px;top:640.0px;width:61.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:right;line-height:1.15;z-index:5;">2</div>
+    
+    </section>
+
+<section class="parte1-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;width:960px;height:66.7px;background-color:#00b8ff;color:#ffffff;font-family:'Roboto','Liberation Sans',sans-serif;font-size:36.5px;display:flex;align-items:center;padding-left:51.4px;box-sizing:border-box;z-index:5;">INTRODUCCIÓN HISTÓRICA (II)</div><div style="position:absolute;left:30.9px;top:92.9px;width:888.0px;height:373.8px;box-sizing:border-box;border:1.2px solid #000000;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px;font-weight:bold">1976.-</span><span style="font-size:20.32px"> Publicación ICRP 26: Sistema de Limitación de Dosis . </span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:2.7px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px;font-weight:bold">1990.-</span><span style="font-size:20.32px"> Publicación ICRP 60. Nuevas recomendaciones en materia de Protección Radiológica. </span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:2.7px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px;font-weight:bold">1996.-</span><span style="font-size:20.32px"> Directiva Europea. (96/29 EURATOM) “Normas Básicas de Protección Sanitaria de los Trabajadores y la Población contra los riesgos que resultan de las Radiaciones Ionizantes”.</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:2.7px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px;font-weight:bold">2001.-</span><span style="font-size:20.32px"> Real Decreto 783/2001. “Reglamento sobre Protección Sanitaria contra Radiaciones Ionizantes”. (Transposición de la directiva europea 96/29 EURATOM).</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:2.7px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px;font-weight:bold">2007.-</span><span style="font-size:20.32px"> Publicación ICRP-103. Nuevas recomendaciones en materia de Protección Radiológica. </span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:2.7px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px;font-weight:bold">2010.-</span><span style="font-size:20.32px"> Publicación ICRP-116. Coeficientes de conversión para magnitudes de protección radiológica para exposiciones con radiación externa.</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:2.7px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px;font-weight:bold">2020.-</span><span style="font-size:20.32px"> Publicación ICRP-144. Coeficientes de dosis para exposición externa a fuentes de radiación ambiental.</span></span></div>
+<div style="height:6px;"></div></div>
+      
+      <div style="position:absolute;left:0px;top:620.0px;width:843.4px;height:0px;border-top:2.7px solid #00b8ff;z-index:5;"></div>
+      <img src="assets/parte1_10000000000000EF00000098E388084E.jpg" style="position:absolute;left:21.2px;top:627.1px;width:74.8px;height:46.3px;object-fit:contain;z-index:5;" alt="Sacyl"/>
+      <div style="position:absolute;left:116.6px;top:640.0px;width:733.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:left;line-height:1.15;z-index:5;">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+      <div style="position:absolute;left:857.2px;top:640.0px;width:61.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:right;line-height:1.15;z-index:5;">3</div>
+    
+    </section>
+
+<section class="parte1-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;width:960px;height:66.7px;background-color:#00b8ff;color:#ffffff;font-family:'Roboto','Liberation Sans',sans-serif;font-size:36.5px;display:flex;align-items:center;padding-left:51.4px;box-sizing:border-box;z-index:5;">GENERALIDADES SOBRE MAGNITUDES (I)</div><div style="position:absolute;left:61.7px;top:90.8px;width:422.3px;height:495.8px;box-sizing:border-box;border:1.2px solid #000000;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:18.06px;font-weight:bold">MAGNITUD</span><span style="font-size:18.06px">.</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:3.1px;line-height:1.05;padding-left:43.5px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:26.9px;flex-shrink:0">–</span><span style="flex:1;"><span style="font-size:18.06px">Cualquier característica o propiedad de un cuerpo que se puede medir.</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:3.1px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:18.06px;font-weight:bold">MEDIDA</span><span style="font-size:18.06px">.</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:3.1px;line-height:1.05;padding-left:43.5px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:26.9px;flex-shrink:0">–</span><span style="flex:1;"><span style="font-size:18.06px">La evaluación concreta de la magnitud.</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:3.1px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:18.06px;font-weight:bold">UNIDAD</span><span style="font-size:18.06px">.</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:3.1px;line-height:1.05;padding-left:43.5px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:26.9px;flex-shrink:0">–</span><span style="flex:1;"><span style="font-size:18.06px">Patrón de medida. Referencia para establecer el valor de la magnitud.</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:3.1px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:18.06px;font-weight:bold">SISTEMA DE UNIDADES</span><span style="font-size:18.06px">.</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:3.1px;line-height:1.05;padding-left:43.5px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:26.9px;flex-shrink:0">–</span><span style="flex:1;"><span style="font-size:18.06px">Conjunto reducido de unidades patrón de magnitudes fundamentales sujetas a ciertos criterios generales, de las cuales derivan las demás magnitudes.</span></span></div></div><div style="position:absolute;left:491.5px;top:140.4px;width:406.8px;height:420.6px;box-sizing:border-box;border:1.2px solid #000000;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;text-align:center;line-height:1.12"><span style="font-size:18.06px;font-weight:bold">SISTEMA INTERNACIONAL O MKS</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;text-align:center;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">Basado en 7 magnitudes fundamentales </span></div>
+<div style="height:6px;"></div>
+<div style="margin:0;padding:0;font-size:20.32px;text-align:center;margin-top:3.1px;line-height:1.05;display:flex;justify-content:center;align-items:baseline"><span style="color:#000000;display:inline-block;width:16.0px;flex-shrink:0">•</span><span><span style="font-size:18.06px">Longitud (metro)</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;text-align:center;margin-top:3.1px;line-height:1.05;display:flex;justify-content:center;align-items:baseline"><span style="color:#000000;display:inline-block;width:16.0px;flex-shrink:0">•</span><span><span style="font-size:18.06px">Masa (Kilogramo)</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;text-align:center;margin-top:3.1px;line-height:1.05;display:flex;justify-content:center;align-items:baseline"><span style="color:#000000;display:inline-block;width:16.0px;flex-shrink:0">•</span><span><span style="font-size:18.06px">Tiempo (segundo)</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;text-align:center;margin-top:3.1px;line-height:1.05;display:flex;justify-content:center;align-items:baseline"><span style="color:#000000;display:inline-block;width:16.0px;flex-shrink:0">•</span><span><span style="font-size:18.06px">I.Corriente (amperio)</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;text-align:center;margin-top:3.1px;line-height:1.05;display:flex;justify-content:center;align-items:baseline"><span style="color:#000000;display:inline-block;width:16.0px;flex-shrink:0">•</span><span><span style="font-size:18.06px">Temperatura (kelvin)</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;text-align:center;margin-top:3.1px;line-height:1.05;display:flex;justify-content:center;align-items:baseline"><span style="color:#000000;display:inline-block;width:16.0px;flex-shrink:0">•</span><span><span style="font-size:18.06px">I.Luminosa (candela)</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;text-align:center;margin-top:3.1px;line-height:1.05;display:flex;justify-content:center;align-items:baseline"><span style="color:#000000;display:inline-block;width:16.0px;flex-shrink:0">•</span><span><span style="font-size:18.06px">Cantidad de sustancia (mol)</span></span></div>
+<div style="height:6px;"></div>
+<div style="margin:0;padding:0;font-size:20.32px;text-align:justify;margin-top:2.3px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:13.55px">La legislación europea prescribe el 1 de enero de 1986 que en las mediciones radiológicas se usen obligatoriamente las unidades del Sistema Internacional de medidas.</span></span></div></div>
+      
+      <div style="position:absolute;left:0px;top:620.0px;width:843.4px;height:0px;border-top:2.7px solid #00b8ff;z-index:5;"></div>
+      <img src="assets/parte1_10000000000000EF00000098E388084E.jpg" style="position:absolute;left:21.2px;top:627.1px;width:74.8px;height:46.3px;object-fit:contain;z-index:5;" alt="Sacyl"/>
+      <div style="position:absolute;left:116.6px;top:640.0px;width:733.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:left;line-height:1.15;z-index:5;">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+      <div style="position:absolute;left:857.2px;top:640.0px;width:61.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:right;line-height:1.15;z-index:5;">4</div>
+    
+    </section>
+
+<section class="parte1-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;width:960px;height:66.7px;background-color:#00b8ff;color:#ffffff;font-family:'Roboto','Liberation Sans',sans-serif;font-size:36.5px;display:flex;align-items:center;padding-left:51.4px;box-sizing:border-box;z-index:5;">GENERALIDADES SOBRE MAGNITUDES (II)</div><div style="position:absolute;left:7.3px;top:75.8px;width:834.5px;height:42.3px;box-sizing:border-box;padding:3.3px 6.9px 3.3px 6.9px;display:flex;flex-direction:column;justify-content:flex-end;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.14"><span style="font-size:27.09px;font-weight:bold">CLASIFICACIÓN DE LAS MAGNITUDES RADIOLÓGICAS</span></div></div><div style="position:absolute;left:34.3px;top:123.5px;width:870.9px;height:414.1px;box-sizing:border-box;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px;font-weight:bold">RADIOMETRÍA</span><span style="font-size:20.32px">.</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:3px;line-height:1.05;padding-left:43.5px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:26.9px;flex-shrink:0">–</span><span style="flex:1;"><span style="font-size:20.32px">Magnitudes asociadas a un campo de radiación. (fluencia y flujo de energía y de partículas, energía radiante,...).</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:8px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px;font-weight:bold">COEFICIENTES DE INTERACCIÓN</span><span style="font-size:20.32px">.</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:3px;line-height:1.05;padding-left:43.5px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:26.9px;flex-shrink:0">–</span><span style="flex:1;"><span style="font-size:20.32px">Magnitudes asociadas a la interacción de la radiación con la materia. (coeficiente de atenuación másico, lineal, sección eficaz, ...).</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:22px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px;font-weight:bold">DOSIMETRÍA.</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:3px;line-height:1.05;padding-left:43.5px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:26.9px;flex-shrink:0">–</span><span style="flex:1;"><span style="font-size:20.32px">Magnitudes relacionadas con la medida de la energía absorbida y de su distribución. Derivan de las dos anteriores. (Dosis absorbida, Kerma, LET,..)</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:8px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px;font-weight:bold">RADIACTIVIDAD.</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:3px;line-height:1.05;padding-left:43.5px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:26.9px;flex-shrink:0">–</span><span style="flex:1;"><span style="font-size:20.32px">Magnitudes asociadas con el campo de radiación producido por determinadas sustancias.</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:8px;line-height:1.05;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px;font-weight:bold">RADIOPROTECCIÓN.</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:3px;line-height:1.05;padding-left:43.5px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:26.9px;flex-shrink:0">–</span><span style="flex:1;"><span style="font-size:20.32px">Magnitudes relacionadas con los efectos biológicos producidos por las radiaciones en determinados órganos o tejidos.</span></span></div></div><div style="position:absolute;left:20.6px;top:268px;width:912.0px;height:248px;box-sizing:border-box;border:3.4px solid #800000;padding:3.3px 6.9px 3.3px 6.9px;z-index:4"></div>
+      
+      <div style="position:absolute;left:0px;top:620.0px;width:843.4px;height:0px;border-top:2.7px solid #00b8ff;z-index:5;"></div>
+      <img src="assets/parte1_10000000000000EF00000098E388084E.jpg" style="position:absolute;left:21.2px;top:627.1px;width:74.8px;height:46.3px;object-fit:contain;z-index:5;" alt="Sacyl"/>
+      <div style="position:absolute;left:116.6px;top:640.0px;width:733.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:left;line-height:1.15;z-index:5;">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+      <div style="position:absolute;left:857.2px;top:640.0px;width:61.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:right;line-height:1.15;z-index:5;">5</div>
+    
+    </section>
+
+<section class="parte1-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;width:960px;height:66.7px;background-color:#00b8ff;color:#ffffff;font-family:'Roboto','Liberation Sans',sans-serif;font-size:36.5px;display:flex;align-items:center;padding-left:51.4px;box-sizing:border-box;z-index:5;">RADIACTIVIDAD</div><div style="position:absolute;left:29.5px;top:116.1px;width:197.0px;height:33.6px;box-sizing:border-box;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.14"><span style="font-weight:bold">ACTIVIDAD</span></div></div><div style="position:absolute;left:274.6px;top:110.1px;width:565.7px;height:161.6px;box-sizing:border-box;border:1.2px solid #000000;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.12"><span style="font-size:20.32px">Actividad de una cantidad de un radionucleido en un determinado estado energético es el cociente: </span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:8.6px;line-height:1.12"><span style="font-size:20.32px;font-style:italic">dN:</span><span style="font-size:20.32px"> valor esperado del nº de transiciones nucleares espontáneas (desintegraciones) que se producen.</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:8.6px;line-height:1.12"><span style="font-size:20.32px;font-style:italic">dt</span><span style="font-size:20.32px"> = intervalo de tiempo</span></div></div><div style="position:absolute;left:34.6px;top:282.8px;width:805.7px;height:315px;box-sizing:border-box;border:1.2px solid #000000;padding:6px 10px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.12"><span style="font-size:18.06px;font-weight:bold">Unidad especial : </span><span style="font-size:18.06px">Curio (Ci). Es un patrón de masa ( actividad de 1 gramo de Ra-226 en condiciones normales de laboratorio).</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:5px;line-height:1.12"><span style="font-size:18.06px;font-weight:bold">Unidad del S.I. : </span><span style="font-size:18.06px">Becquerelio ( s</span><sup style="font-size:18.06px">-1</sup><span style="font-size:18.06px">) (Bq).</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:5px;line-height:1.12"><span style="font-size:18.06px">- 1 Bq = 1 transformación por segundo. 1 d.p.s. (s</span><sup style="font-size:18.06px">-1</sup><span style="font-size:18.06px">). Se utilizan múltiplos:</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:5px;line-height:1.12"><span style="font-size:18.06px">MegaBecquerelio(MBq) = 10</span><sup style="font-size:18.06px">6 </sup><span style="font-size:18.06px">Bq </span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:5px;line-height:1.12"><span style="font-size:18.06px">KiloBecquerelio(KBq) = 10</span><sup style="font-size:18.06px">3</sup><span style="font-size:18.06px"> Bq</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:5px;line-height:1.12"><span style="font-size:18.06px">- 1 Ci = 3.7 x 10</span><sup style="font-size:18.06px">10</sup><span style="font-size:18.06px"> Bq. Se utilizan submúltiplos de la unidad: </span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:5px;line-height:1.12"><span style="font-size:18.06px">NanoCurio (nCi) = 10</span><sup style="font-size:18.06px">-9 </sup><span style="font-size:18.06px">Ci = 37 Bq; </span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:5px;line-height:1.12"><span style="font-size:18.06px">MicroCurio (</span><span style="font-size:18.06px">μ</span><span style="font-size:18.06px">Ci) = 10</span><sup style="font-size:18.06px">-6</sup><span style="font-size:18.06px"> Ci = 37.000 Bq = 37 KBq</span></div></div><img src="assets/parte1_10000000000000860000008120819CEF.jpg" style="position:absolute;left:40.1px;top:167.0px;width:97.4px;height:99.9px;box-sizing:border-box;object-fit:fill;z-index:8;" alt=""/><img src="assets/parte1_1000000000000061000000A0C973DE35.jpg" style="position:absolute;left:154.5px;top:169.5px;width:60.8px;height:97.4px;box-sizing:border-box;object-fit:fill;z-index:8;" alt=""/><div style="position:absolute;left:744.3px;top:137.7px;width:75.5px;height:55.4px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;z-index:12;"><div class="math-formula"><i>A</i> = <span class="frac"><span class="num"><i>dN</i></span><span class="den"><i>dt</i></span></span></div></div>
+      
+      <div style="position:absolute;left:0px;top:620.0px;width:843.4px;height:0px;border-top:2.7px solid #00b8ff;z-index:5;"></div>
+      <img src="assets/parte1_10000000000000EF00000098E388084E.jpg" style="position:absolute;left:21.2px;top:627.1px;width:74.8px;height:46.3px;object-fit:contain;z-index:5;" alt="Sacyl"/>
+      <div style="position:absolute;left:116.6px;top:640.0px;width:733.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:left;line-height:1.15;z-index:5;">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+      <div style="position:absolute;left:857.2px;top:640.0px;width:61.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:right;line-height:1.15;z-index:5;">6</div>
+    
+    </section>
+
+<section class="parte1-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;width:960px;height:66.7px;background-color:#00b8ff;color:#ffffff;font-family:'Roboto','Liberation Sans',sans-serif;font-size:36.5px;display:flex;align-items:center;padding-left:51.4px;box-sizing:border-box;z-index:5;">MAGNITUDES EN DOSIMETRÍA (I)</div><div style="position:absolute;left:73.0px;top:129.2px;width:254.0px;height:33.6px;box-sizing:border-box;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.12"><span style="font-weight:bold">EXPOSICIÓN</span></div></div><div style="position:absolute;left:26.0px;top:317.5px;width:821.0px;height:247.4px;box-sizing:border-box;border:1.2px solid #000000;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.12"><span style="font-size:18.06px;font-weight:bold">Unidad especial : Roentgen (R).</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px;font-weight:bold">Unidad del S.I. : </span><span style="font-size:18.06px">Culombio/Kilogramo (C/Kg)</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">Es la exposición producida por un haz de radiación X ó </span><span style="font-size:18.06px">γ</span><span style="font-size:18.06px"> que absorbido en 1 Kg. de masa de aire seco en condiciones normales de presión y temperatura, libera 1 culombio de carga de cada signo.</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px;font-weight:bold">Relación entre unidades antiguas y del S.I. </span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">- 1 C / Kg. = 3876 R </span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">- 1 R = 2.58x10</span><sup style="font-size:18.06px">-4 </sup><span style="font-size:18.06px">C / Kg.</span></div></div><div style="position:absolute;left:291.4px;top:117.4px;width:540.5px;height:165px;box-sizing:border-box;border:1.2px solid #000000;padding:6px 10px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.12"><span style="font-size:20.32px">Exposición es el cociente: </span></div>
+<div style="margin-top:16px;padding:0;font-size:20.32px;line-height:1.12"><span style="font-size:20.32px;font-style:italic">dQ</span><span style="font-size:20.32px"> es la carga total de los iones de un solo signo producidos en aire, cuando todos los e</span><sup style="font-size:20.32px">-</sup><span style="font-size:20.32px"> liberados por los fotones absorbidos en la masa </span><span style="font-size:20.32px;font-style:italic">dm</span><span style="font-size:20.32px"> hayan sido detenidos completamente en el seno del aire</span></div></div><img src="assets/parte1_10000000000000B4000000E4C761E533.png" style="position:absolute;left:120.0px;top:184.6px;width:80.1px;height:98.8px;box-sizing:border-box;object-fit:fill;z-index:8;" alt=""/><div style="position:absolute;left:690px;top:122px;width:110px;height:45px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;z-index:12;"><div class="math-formula"><i>X</i> = <span class="frac"><span class="num"><i>dQ</i></span><span class="den"><i>dm</i></span></span></div></div>
+      
+      <div style="position:absolute;left:0px;top:620.0px;width:843.4px;height:0px;border-top:2.7px solid #00b8ff;z-index:5;"></div>
+      <img src="assets/parte1_10000000000000EF00000098E388084E.jpg" style="position:absolute;left:21.2px;top:627.1px;width:74.8px;height:46.3px;object-fit:contain;z-index:5;" alt="Sacyl"/>
+      <div style="position:absolute;left:116.6px;top:640.0px;width:733.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:left;line-height:1.15;z-index:5;">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+      <div style="position:absolute;left:857.2px;top:640.0px;width:61.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:right;line-height:1.15;z-index:5;">7</div>
+    
+    </section>
+
+<section class="parte1-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;width:960px;height:66.7px;background-color:#00b8ff;color:#ffffff;font-family:'Roboto','Liberation Sans',sans-serif;font-size:36.5px;display:flex;align-items:center;padding-left:51.4px;box-sizing:border-box;z-index:5;">MAGNITUDES EN DOSIMETRÍA (II)</div><div style="position:absolute;left:39.2px;top:107.9px;width:783.8px;height:42.3px;box-sizing:border-box;padding:3.3px 6.9px 3.3px 6.9px;display:flex;flex-direction:column;justify-content:flex-end;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.14"><span style="font-size:27.09px;font-weight:bold">EXPOSICIÓN (Observaciones)</span></div></div><div style="position:absolute;left:36.3px;top:174.3px;width:798.3px;height:363.5px;box-sizing:border-box;border:1.2px solid #000000;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.14;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px">Se definió antes la unidad (Roentgen) que la propia magnitud.</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:3.8px;line-height:1.14;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px">Hace referencia únicamente al poder de ionización de la radiación X ó </span><span style="font-size:20.32px">γ</span><span style="font-size:20.32px"> en un medio específico (aire).</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:3.8px;line-height:1.14;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px">El efecto medido (ionización en aire) es de escaso interés para el estudio de los efectos producidos por las radiaciones en los tejidos.</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:3.8px;line-height:1.14;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px">Existen problemas de medición de la exposición para energías de fotones de unos pocos keV y por encima de varios MeV (difícil mantener en estas situaciones condiciones de equilibrio).</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:3.8px;line-height:1.14;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px">Es una magnitud de paso hacia la Magnitud Dosis Absorbida . </span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:3.8px;line-height:1.14;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:20.32px">Dificultad de utilizar la unidad del SI (C/Kg) por su gran dimensión y difícil relación con el Roentgen (R).</span></span></div></div>
+      
+      <div style="position:absolute;left:0px;top:620.0px;width:843.4px;height:0px;border-top:2.7px solid #00b8ff;z-index:5;"></div>
+      <img src="assets/parte1_10000000000000EF00000098E388084E.jpg" style="position:absolute;left:21.2px;top:627.1px;width:74.8px;height:46.3px;object-fit:contain;z-index:5;" alt="Sacyl"/>
+      <div style="position:absolute;left:116.6px;top:640.0px;width:733.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:left;line-height:1.15;z-index:5;">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+      <div style="position:absolute;left:857.2px;top:640.0px;width:61.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:right;line-height:1.15;z-index:5;">8</div>
+    
+    </section>
+
+<section class="parte1-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;width:960px;height:66.7px;background-color:#00b8ff;color:#ffffff;font-family:'Roboto','Liberation Sans',sans-serif;font-size:36.5px;display:flex;align-items:center;padding-left:51.4px;box-sizing:border-box;z-index:5;">MAGNITUDES EN DOSIMETRÍA (III)</div><div style="position:absolute;left:463.1px;top:143.6px;width:381.3px;height:84.4px;box-sizing:border-box;border:1.2px solid #000000;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.14"><span style="font-size:20.32px">Representa la variación de la exposición </span><span style="font-size:20.32px;font-style:italic">dX</span><span style="font-size:20.32px"> en un intervalo de tiempo </span><span style="font-size:20.32px;font-style:italic">dt</span><span style="font-size:20.32px"> </span></div></div><div style="position:absolute;left:17.4px;top:263.5px;width:459.5px;height:270.0px;box-sizing:border-box;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.12"><span style="font-size:18.06px;font-weight:bold">Unidad especial : R/s (</span><span style="font-size:18.06px;font-weight:bold">Roentgen /segundo)</span><span style="font-size:18.06px;font-weight:bold"> </span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">Se utilizan submúltiplos :</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">R/h, mR/h , </span><span style="font-size:18.06px">μ</span><span style="font-size:18.06px">R/h</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px;font-weight:bold">Unidad S.I.:C/Kg·s (Culombio / Kilogramo</span><span style="font-size:18.06px;font-weight:bold">•s )</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">Apenas se utiliza en la práctica por su desmesurada dimensión.</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">Ejemplo: Niveles medios de tasa de exposición a la radiación gamma natural en nuestro país . (Proyecto MARNA - CSN)</span></div></div><div style="position:absolute;left:45.7px;top:125.2px;width:338.5px;height:33.6px;box-sizing:border-box;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.12"><span style="font-weight:bold">TASA DE EXPOSICIÓN</span></div></div><div style="position:absolute;left:154.5px;top:183.6px;width:67.7px;height:47.0px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;z-index:12;"><div class="math-formula"><span class="overdot"><i>X</i></span> = <span class="frac"><span class="num"><i>dX</i></span><span class="den"><i>dt</i></span></span></div></div><img src="assets/parte1_10000000000001910000015C3EC4D128.png" style="position:absolute;left:508.5px;top:267.6px;width:393.5px;height:303.3px;box-sizing:border-box;object-fit:fill;z-index:8;" alt=""/><div style="position:absolute;left:601.0px;top:542.8px;width:297.3px;height:28.2px;box-sizing:border-box;background-color:#ffffff;padding:3.3px 6.9px 3.3px 6.9px;display:flex;flex-direction:column;justify-content:flex-end;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;text-align:right;line-height:1.14"><span style="font-size:22.58px;font-weight:bold">Datos: C.S.N.</span></div></div><div style="position:absolute;left:388.8px;top:244.9px;width:536.9px;height:21.2px;box-sizing:border-box;padding:3.3px 6.9px 3.3px 6.9px;display:flex;flex-direction:column;justify-content:flex-end;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;text-align:center;line-height:1.14"><span style="font-size:13.55px;font-weight:bold">Niveles medios de tasa de exposición a la radiación gamma natural en España</span></div></div>
+      
+      <div style="position:absolute;left:0px;top:620.0px;width:843.4px;height:0px;border-top:2.7px solid #00b8ff;z-index:5;"></div>
+      <img src="assets/parte1_10000000000000EF00000098E388084E.jpg" style="position:absolute;left:21.2px;top:627.1px;width:74.8px;height:46.3px;object-fit:contain;z-index:5;" alt="Sacyl"/>
+      <div style="position:absolute;left:116.6px;top:640.0px;width:733.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:left;line-height:1.15;z-index:5;">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+      <div style="position:absolute;left:857.2px;top:640.0px;width:61.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:right;line-height:1.15;z-index:5;">9</div>
+    
+    </section>
+
+<section class="parte1-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;width:960px;height:66.7px;background-color:#00b8ff;color:#ffffff;font-family:'Roboto','Liberation Sans',sans-serif;font-size:36.5px;display:flex;align-items:center;padding-left:51.4px;box-sizing:border-box;z-index:5;">MAGNITUDES EN DOSIMETRÍA (IV)</div><div style="position:absolute;left:73.6px;top:85.0px;width:285.9px;height:36.5px;box-sizing:border-box;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;text-align:center;line-height:1.12"><span style="font-size:22.58px;font-weight:bold">DOSIS ABSORBIDA</span></div></div><div style="position:absolute;left:30.9px;top:133.3px;width:411.4px;height:211.4px;box-sizing:border-box;border:1.2px solid #000000;padding:6px 10px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.12"><span style="font-size:20.32px">Dosis absorbida es el cociente:</span></div>
+<div style="margin-top:52px;padding:0;font-size:20.32px;line-height:1.12"><span style="font-size:20.32px">Donde </span><span style="font-size:20.32px;font-style:italic">d</span><span style="font-size:20.32px;font-style:italic">ε</span><span style="font-size:20.32px"> es la energía media impartida por la radiación ionizante y absorbida en una cantidad de masa </span><span style="font-size:20.32px;font-style:italic">dm</span><span style="font-size:20.32px"> de un material específico.</span></div></div><div style="position:absolute;left:27.5px;top:356.5px;width:415.0px;height:190.6px;box-sizing:border-box;border:1.2px solid #000000;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.12"><span style="font-size:18.06px;font-weight:bold">Unidad especial: Rad. </span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px;font-weight:bold">Unidad del S.I. : Gray (Gy).</span><span style="font-size:18.06px"> </span><span style="font-size:18.06px;font-weight:bold">(J/Kg)</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">1mGy = 10</span><sup style="font-size:18.06px">-3 </sup><span style="font-size:18.06px">Gy; 1 </span><span style="font-size:18.06px">μ</span><span style="font-size:18.06px">Gy= 10</span><sup style="font-size:18.06px">-6</sup><span style="font-size:18.06px"> Gy.</span><span style="font-size:18.06px;font-weight:bold"> </span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px;font-weight:bold">Relación entre unidad especial y unidad del S.I. </span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">- 1 Gray = 100 rad - 1 rad= 10</span><sup style="font-size:18.06px">-2</sup><span style="font-size:18.06px"> Gy = 1cGy</span></div></div><div style="position:absolute;left:485.0px;top:86.1px;width:363.5px;height:36.5px;box-sizing:border-box;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.12"><span style="font-size:22.58px;font-weight:bold">TASA DE DOSIS ABSORBIDA</span></div></div><div style="position:absolute;left:462.8px;top:133.3px;width:391.0px;height:84.4px;box-sizing:border-box;border:1.2px solid #000000;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.12"><span style="font-size:20.32px">Variación de la dosis absorbida </span><span style="font-size:20.32px;font-style:italic">dD</span><span style="font-size:20.32px"> en un pto. de un material en un intervalo de tiempo </span><span style="font-size:20.32px;font-style:italic">dt</span><span style="font-size:20.32px">.</span></div></div><div style="position:absolute;left:23.9px;top:85.0px;width:425.3px;height:481.7px;box-sizing:border-box;border:1.2px solid #000000;padding:3.5px 6.9px 3.5px 6.9px;display:flex;flex-direction:column;justify-content:center;z-index:4"></div><div style="position:absolute;left:456.4px;top:85.3px;width:408.2px;height:481.4px;box-sizing:border-box;border:1.2px solid #000000;padding:3.5px 6.9px 3.5px 6.9px;display:flex;flex-direction:column;justify-content:center;z-index:4"></div><div style="position:absolute;left:462.8px;top:346.6px;width:389.8px;height:202.3px;box-sizing:border-box;border:1.2px solid #000000;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.12"><span style="font-size:18.06px;font-weight:bold">Unidad especial: rad / s</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">- Se utilizan submúltiplos</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">rad/h; mrad/h. </span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px;font-weight:bold">Unidad del S.I. : Gy / s </span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">- Se utilizan submúltiplos :</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">mGy/h; </span><span style="font-size:18.06px">μ</span><span style="font-size:18.06px">Gy/h.</span></div></div><div style="position:absolute;left:150px;top:168px;width:160px;height:45px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;z-index:12;"><div class="math-formula"><i>D</i> = <span class="frac"><span class="num"><i>d</i><span class="overbar">&epsilon;</span></span><span class="den"><i>dm</i></span></span></div></div><div style="position:absolute;left:600.1px;top:237.5px;width:65.3px;height:47.0px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;z-index:12;"><div class="math-formula"><span class="overdot"><i>D</i></span> = <span class="frac"><span class="num"><i>dD</i></span><span class="den"><i>dt</i></span></span></div></div>
+      
+      <div style="position:absolute;left:0px;top:620.0px;width:843.4px;height:0px;border-top:2.7px solid #00b8ff;z-index:5;"></div>
+      <img src="assets/parte1_10000000000000EF00000098E388084E.jpg" style="position:absolute;left:21.2px;top:627.1px;width:74.8px;height:46.3px;object-fit:contain;z-index:5;" alt="Sacyl"/>
+      <div style="position:absolute;left:116.6px;top:640.0px;width:733.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:left;line-height:1.15;z-index:5;">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+      <div style="position:absolute;left:857.2px;top:640.0px;width:61.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:right;line-height:1.15;z-index:5;">10</div>
+    
+    </section>
+
+<section class="parte1-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;width:960px;height:66.7px;background-color:#00b8ff;color:#ffffff;font-family:'Roboto','Liberation Sans',sans-serif;font-size:36.5px;display:flex;align-items:center;padding-left:51.4px;box-sizing:border-box;z-index:5;">MAGNITUDES EN DOSIMETRÍA (IV)</div><div style="position:absolute;left:39.5px;top:83.7px;width:783.8px;height:42.3px;box-sizing:border-box;padding:3.3px 6.9px 3.3px 6.9px;display:flex;flex-direction:column;justify-content:flex-end;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.14"><span style="font-size:27.09px;font-weight:bold">DOSIS ABSORBIDA (Observaciones)</span></div></div><div style="position:absolute;left:53.0px;top:167.9px;width:776.5px;height:336.6px;box-sizing:border-box;border:1.2px solid #000000;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.14;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:22.58px">Es la magnitud dosimétrica de mayor interés.</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:3.8px;line-height:1.14;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:22.58px">Hace referencia a la energía impartida por la radiación ionizante de cualquier tipo y absorbida en un punto de un material específico.</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:3.8px;line-height:1.14;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:22.58px">El efecto medido es de gran interés para estudios de radiobiología y protección contra las radiaciones.</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:3.8px;line-height:1.14;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:22.58px">Fácil relación entre las unidades antiguas y las del S.I. </span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:3.8px;line-height:1.14;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:22.58px">Es una magnitud que se relaciona de forma sencilla con otras magnitudes (Exposición , Dosis Equivalente, etc.) .</span></span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:3.8px;line-height:1.14;padding-left:0.0px;display:flex;align-items:baseline"><span style="color:#000000;display:inline-block;width:32.3px;flex-shrink:0">•</span><span style="flex:1;"><span style="font-size:22.58px">Es el pilar básico para el cálculo de las magnitudes limitadoras y operacionales . </span></span></div></div>
+      
+      <div style="position:absolute;left:0px;top:620.0px;width:843.4px;height:0px;border-top:2.7px solid #00b8ff;z-index:5;"></div>
+      <img src="assets/parte1_10000000000000EF00000098E388084E.jpg" style="position:absolute;left:21.2px;top:627.1px;width:74.8px;height:46.3px;object-fit:contain;z-index:5;" alt="Sacyl"/>
+      <div style="position:absolute;left:116.6px;top:640.0px;width:733.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:left;line-height:1.15;z-index:5;">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+      <div style="position:absolute;left:857.2px;top:640.0px;width:61.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:right;line-height:1.15;z-index:5;">11</div>
+    
+    </section>
+
+<section class="parte1-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;width:960px;height:66.7px;background-color:#00b8ff;color:#ffffff;font-family:'Roboto','Liberation Sans',sans-serif;font-size:36.5px;display:flex;align-items:center;padding-left:51.4px;box-sizing:border-box;z-index:5;">MAGNITUDES EN DOSIMETRÍA (V)</div><div style="position:absolute;left:58.7px;top:86.1px;width:761.7px;height:33.6px;box-sizing:border-box;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.12"><span style="font-weight:bold">Transferencia Lineal de Energía (LET , L</span><sub style="font-weight:bold">Δ</sub><span style="font-weight:bold"> )</span></div></div><div style="position:absolute;left:18.5px;top:266.9px;width:520.0px;height:330.0px;box-sizing:border-box;border:1.2px solid #000000;padding:6px 10px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.12"><span style="font-size:18.06px;font-weight:bold">Unidad del S.I. : J/m </span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">- Otras unidades: keV/</span><span style="font-size:18.06px">μ</span><span style="font-size:18.06px">m</span><span style="font-size:18.06px;font-weight:bold"> , eV/m, MeV/m</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px;font-weight:bold">Consideraciones generales:</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">El LET tiene gran importancia el Radiobiología y Radioprotección, pues </span><span style="font-size:18.06px;text-decoration:underline">sirve de base para el cálculo de los factores que ponderan la calidad de radiación en la evaluación del daño biológico </span><span style="font-size:18.06px">. En nuestro reglamento se considera la Transferencia Lineal de Energía no restringida (L</span><sub style="font-size:18.06px">∞</sub><span style="font-size:18.06px"> </span><span style="font-size:18.06px">Si se consideran todas las colisiones en la pérdida de energía, L</span><sub style="font-size:18.06px">Δ</sub><span style="font-size:18.06px"> = L</span><sub style="font-size:18.06px">∞</sub><sub style="font-size:18.06px"> </sub><span style="font-size:18.06px">y el medio específico es Agua</span><span style="font-size:18.06px">)</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">ES LA MAGNITUD DE PASO A LA DOSIS EQUIVALENTE</span></div></div><div style="position:absolute;left:286.1px;top:154.8px;width:550.3px;height:109.8px;box-sizing:border-box;border:1.2px solid #000000;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.12"><span style="font-size:20.32px">Es la energía disipada por una partícula cargada al atravesar una longitud dl en todas aquellas colisiones con e- en las que la pérdida de energía es &lt; </span><span style="font-size:20.32px;font-weight:bold">Δ).</span></div></div><img src="assets/parte1_object6.png" style="position:absolute;left:559.5px;top:363.7px;width:283.0px;height:200.9px;box-sizing:border-box;object-fit:contain;z-index:10;" alt="Object 6"/><div style="position:absolute;left:550px;top:324.9px;width:300px;height:28.5px;box-sizing:border-box;padding:3.5px;z-index:10;text-align:center;"><div style="margin:0;padding:0;font-size:15.8px;line-height:1.12;font-weight:bold;">Factor de Calidad Q en función del LET</div></div><div style="position:absolute;left:105px;top:157.7px;width:100px;height:47.0px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;z-index:12;"><div class="math-formula"><span><i>L</i><sub style="font-size:0.65em;position:relative;top:4px;margin-left:1px;">&Delta;</sub></span> = <span class="frac"><span class="num"><i>dE</i></span><span class="den"><i>dl</i></span></span></div></div>
+      
+      <div style="position:absolute;left:0px;top:620.0px;width:843.4px;height:0px;border-top:2.7px solid #00b8ff;z-index:5;"></div>
+      <img src="assets/parte1_10000000000000EF00000098E388084E.jpg" style="position:absolute;left:21.2px;top:627.1px;width:74.8px;height:46.3px;object-fit:contain;z-index:5;" alt="Sacyl"/>
+      <div style="position:absolute;left:116.6px;top:640.0px;width:733.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:left;line-height:1.15;z-index:5;">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+      <div style="position:absolute;left:857.2px;top:640.0px;width:61.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:right;line-height:1.15;z-index:5;">12</div>
+    
+    </section>
+
+<section class="parte1-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;width:960px;height:66.7px;background-color:#00b8ff;color:#ffffff;font-family:'Roboto','Liberation Sans',sans-serif;font-size:36.5px;display:flex;align-items:center;padding-left:51.4px;box-sizing:border-box;z-index:5;">RELACIÓN ENTRE MAGNITUDES</div><div style="position:absolute;left:65.0px;top:91.7px;width:762.0px;height:33.6px;box-sizing:border-box;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.12"><span style="font-weight:bold">RELACIÓN ENTRE EXPOSICIÓN Y D.ABSORBIDA</span></div></div><div style="position:absolute;left:349.7px;top:130.4px;width:464.2px;height:110.8px;box-sizing:border-box;border:1.2px solid #000000;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.12"><span style="font-size:20.32px;font-style:italic">D:</span><span style="font-size:20.32px"> Dosis absorbida en un pto. de un material</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:8.6px;line-height:1.12"><span style="font-size:20.32px;font-style:italic">X: </span><span style="font-size:20.32px">Exposición .</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:8.6px;line-height:1.12"><span style="font-size:20.32px;font-style:italic">f: </span><span style="font-size:20.32px">factor de relación entre X y D.</span></div></div><div style="position:absolute;left:35.5px;top:288.8px;width:399.6px;height:155.4px;box-sizing:border-box;border:1.2px solid #000000;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.14"><span style="font-size:18.06px;font-style:italic">f</span><span style="font-size:18.06px"> está tabulado para distintos materiales y energías. (Tabla 3)</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px;font-style:italic">f </span><span style="font-size:18.06px">es aproximadamente 1 para todas las energías cuando el material irradiado es tejido blando y se utilizan las unidades antiguas.(rad, R).</span></div></div><img src="assets/parte1_100000010000021000000237870C7EB7.png" style="position:absolute;left:508.1px;top:299.9px;width:301.0px;height:313.4px;box-sizing:border-box;object-fit:fill;z-index:8;" alt=""/><div style="position:absolute;left:171.4px;top:195.9px;width:71.4px;height:23.5px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;z-index:12;"><div class="math-formula"><i>D</i> = <i>f&middot;X</i></div></div>
+      
+      <div style="position:absolute;left:0px;top:620.0px;width:843.4px;height:0px;border-top:2.7px solid #00b8ff;z-index:5;"></div>
+      <img src="assets/parte1_10000000000000EF00000098E388084E.jpg" style="position:absolute;left:21.2px;top:627.1px;width:74.8px;height:46.3px;object-fit:contain;z-index:5;" alt="Sacyl"/>
+      <div style="position:absolute;left:116.6px;top:640.0px;width:733.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:left;line-height:1.15;z-index:5;">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+      <div style="position:absolute;left:857.2px;top:640.0px;width:61.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:right;line-height:1.15;z-index:5;">13</div>
+    
+    </section>
+
+<section class="parte1-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;width:960px;height:66.7px;background-color:#00b8ff;color:#ffffff;font-family:'Roboto','Liberation Sans',sans-serif;font-size:36.5px;display:flex;align-items:center;padding-left:51.4px;box-sizing:border-box;z-index:5;">MAGNITUDES EN RADIOPROTECCIÓN (I)</div><div style="position:absolute;left:47.8px;top:82.6px;width:586.0px;height:33.6px;box-sizing:border-box;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.12"><span style="font-weight:bold">EQUIVALENTE DE DOSIS EN UN PUNTO</span><span style="font-weight:bold"> </span></div></div><div style="position:absolute;left:274.3px;top:126.0px;width:553.1px;height:187.0px;box-sizing:border-box;border:1.2px solid #000000;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.12"><span style="font-size:20.32px">D= Dosis absorbida en un pto. de un material</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:8.6px;line-height:1.12"><span style="font-size:20.32px">Q = factor de calidad de la radiación.</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:8.6px;line-height:1.12"><span style="font-size:20.32px;font-weight:bold">Factor de calidad Q .- </span><span style="font-size:20.32px">Q es una constante adimensional que pondera la efectividad biológica de la calidad de radiación . (Se calcula observando la distribución de la energía a nivel microscópico : LET).</span><span style="font-size:20.32px;font-weight:bold"> </span></div></div><div style="position:absolute;left:43.1px;top:333.7px;width:783.8px;height:247.4px;box-sizing:border-box;border:1.2px solid #000000;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;text-align:justify;line-height:1.12"><span style="font-size:18.06px;font-weight:bold">Unidad especial: </span><span style="font-size:18.06px">Rem (*). </span></div>
+<div style="margin:0;padding:0;font-size:20.32px;text-align:justify;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px;font-weight:bold">Unidad SI : </span><span style="font-size:18.06px">J/Kg. Sievert (Sv). (*)</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;text-align:justify;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px;font-weight:bold">Relación entre ambas unidades: </span></div>
+<div style="margin:0;padding:0;font-size:20.32px;text-align:justify;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">1 Sv = 100 rem</span><span style="font-size:18.06px;font-weight:bold"> </span></div>
+<div style="margin:0;padding:0;font-size:20.32px;text-align:justify;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">(*) Al ser Q una constante sin dimensión, la unidad de dosis equivalente del SI es también J/kg .</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;text-align:justify;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">Para distinguir las unidades de Equivalente de Dosis, H, de las de Dosis Absorbida , se utilizan nombres propios diferentes (Sievert y Gray respectivamente).</span></div></div><div style="position:absolute;left:151.2px;top:159.6px;width:88.7px;height:24.0px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;z-index:12;"><div class="math-formula"><i>H = D&middot;Q</i></div></div>
+      
+      <div style="position:absolute;left:0px;top:620.0px;width:843.4px;height:0px;border-top:2.7px solid #00b8ff;z-index:5;"></div>
+      <img src="assets/parte1_10000000000000EF00000098E388084E.jpg" style="position:absolute;left:21.2px;top:627.1px;width:74.8px;height:46.3px;object-fit:contain;z-index:5;" alt="Sacyl"/>
+      <div style="position:absolute;left:116.6px;top:640.0px;width:733.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:left;line-height:1.15;z-index:5;">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+      <div style="position:absolute;left:857.2px;top:640.0px;width:61.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:right;line-height:1.15;z-index:5;">14</div>
+    
+    </section>
+
+<section class="parte1-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+      <div style="position:absolute;left:0;top:0;width:960px;height:66.7px;background-color:#00b8ff;color:#ffffff;font-family:'Roboto','Liberation Sans',sans-serif;font-size:36.5px;display:flex;align-items:center;padding-left:51.4px;box-sizing:border-box;z-index:5;">MAGNITUDES EN RADIOPROTECCIÓN (II)</div><div style="position:absolute;left:435.9px;top:135.8px;width:376.0px;height:59.0px;box-sizing:border-box;border:1.2px solid #000000;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.12"><span style="font-size:20.32px">Variación del equivalente de dosis dH en el intervalo de tiempo dt</span></div></div><div style="position:absolute;left:34.0px;top:269.4px;width:495.6px;height:247.4px;box-sizing:border-box;border:1.2px solid #000000;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.12"><span style="font-size:18.06px;font-weight:bold">Unidad especial: rem/s.</span></div>
+<div style="height:6px;"></div>
+<div style="margin:0;padding:0;font-size:20.32px;line-height:1.12"><span style="font-size:18.06px">(Se utilizan submúltiplos: rem/h, mrem/h)</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px;font-weight:bold">Unidad SI : Sievert / s . (Sv/s) </span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">(Se utilizan submúltiplos: </span></div>
+<div style="margin:0;padding:0;font-size:20.32px;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">mSv/h ; μSv/h</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;text-align:justify;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">Ejemplo: Radiación cósmica a diferentes altitudes.</span></div>
+<div style="margin:0;padding:0;font-size:20.32px;text-align:justify;margin-top:7.6px;line-height:1.12"><span style="font-size:18.06px">(Fuente de datos: Guía del Profesor. CSN)</span></div></div><div style="position:absolute;left:39.5px;top:79.8px;width:649.4px;height:33.6px;box-sizing:border-box;padding:3.3px 6.9px 3.3px 6.9px;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;line-height:1.12"><span style="font-weight:bold">TASA DE EQUIVALENTE DE DOSIS</span></div></div><img src="assets/parte1_10000000000000C9000001464B244DE2.png" style="position:absolute;left:565.7px;top:257.5px;width:215.6px;height:312.2px;box-sizing:border-box;object-fit:fill;z-index:8;" alt=""/><div style="position:absolute;left:417.0px;top:230.5px;width:464.5px;height:28.2px;box-sizing:border-box;padding:3.3px 6.9px 3.3px 6.9px;display:flex;flex-direction:column;justify-content:flex-end;z-index:10"><div style="margin:0;padding:0;font-size:20.32px;text-align:center;line-height:1.14"><span style="font-size:15.80px;font-weight:bold">Tasas de dosis equivalente debida a la radiación cósmica a diferentes altitudes</span></div></div><div style="position:absolute;left:181.4px;top:150.8px;width:68.9px;height:47.0px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;z-index:12;"><div class="math-formula"><span class="overdot"><i>H</i></span> = <span class="frac"><span class="num"><i>dH</i></span><span class="den"><i>dt</i></span></span></div></div>
+      
+      <div style="position:absolute;left:0px;top:620.0px;width:843.4px;height:0px;border-top:2.7px solid #00b8ff;z-index:5;"></div>
+      <img src="assets/parte1_10000000000000EF00000098E388084E.jpg" style="position:absolute;left:21.2px;top:627.1px;width:74.8px;height:46.3px;object-fit:contain;z-index:5;" alt="Sacyl"/>
+      <div style="position:absolute;left:116.6px;top:640.0px;width:733.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:left;line-height:1.15;z-index:5;">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+      <div style="position:absolute;left:857.2px;top:640.0px;width:61.7px;height:40.0px;font-family:'Roboto','Liberation Sans',sans-serif;font-size:15.8px;font-weight:300;color:#000000;text-align:right;line-height:1.15;z-index:5;">15</div>
+    
+    </section>
+
+<section class="parte2-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+        <div class="header-bar">MAGNITUDES LIMITADORAS (I)</div>
+
+        <div style="position:absolute; top:88px; left:58px; font-weight:bold; font-size:20px; color:#000000;">
+          DOSIS EQUIVALENTE EN ORGANO: H<sub>T</sub>
+        </div>
+
+        <img src="assets/parte2_formula_HT.png" alt="H_T = Sum w_R * D_T,R" style="position:absolute; top:162px; left:115px; width:160px; height:auto;">
+
+        <div style="position:absolute; top:134px; left:348px; width:520px; border:1px solid #000000; padding:10px 14px; box-sizing:border-box; font-size:14px; line-height:1.35; color:#000000; text-align:left;">
+          <p style="margin:0 0 10px 0;">-&nbsp;<strong>D<sub>T,R</sub></strong> .- Es la dosis absorbida promediada sobre el tejido u órgano T procedente de la radiación R.</p>
+          <p style="margin:0;">-&nbsp;<strong>w<sub>R</sub></strong>.- Factor ponderal de la radiación R. Constante adimensional que pondera la radiación incidente en el órgano ó tejido. Calculado a partir de la observación del LET .</p>
+        </div>
+
+        <div style="position:absolute; top:238px; left:44px; width:290px; border:1px solid #000000; padding:8px 12px; box-sizing:border-box; font-size:15px; color:#000000; text-align:left;">
+          Unidad SI: Sievert (Sv).
+        </div>
+
+        <table class="std-table" style="position:absolute; top:330px; left:30px; width:512px; font-size:13.5px; line-height:1.25;">
+          <thead>
+            <tr>
+              <th style="text-align:left; width:68%; font-weight:bold;">Tipo de radiación</th>
+              <th style="text-align:center; width:32%; font-weight:bold;">w<sub>R</sub></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>•Fotones</td><td style="text-align:center;">1</td></tr>
+            <tr><td>•Electrones y muones</td><td style="text-align:center;">1</td></tr>
+            <tr><td>•Protones y piones cargados</td><td style="text-align:center;">2</td></tr>
+            <tr><td>•Partículas alfa, fragmentos de fisión, núcleos pesados</td><td style="text-align:center;">20</td></tr>
+            <tr><td>•Neutrones</td><td style="text-align:center;">Una curva continua en función de la E<sub>n</sub></td></tr>
+          </tbody>
+        </table>
+
+        <!-- Reducida altura de imagen y ajustado pie a top: 550px sin colisión -->
+        <img src="assets/parte2_100000000000039D0000029B9B3538CF.png" alt="Factor de ponderación para neutrones" style="position:absolute; top:315px; left:560px; width:296px; height:195px; object-fit:contain;">
+        <div style="position:absolute; top:550px; left:540px; width:340px; font-size:13.5px; text-align:center; color:#000000;">
+          Factor de ponderación para neutrones (ICRP 103, 2007)
+        </div>
+
+        <div class="footer-line"></div>
+        <img class="footer-logo" src="assets/parte2_10000000000000EF00000098E388084E.jpg" alt="Sacyl">
+        <div class="footer-text">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+        <div class="footer-page">16</div>
+      </section>
+
+<section class="parte2-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+        <div class="header-bar">MAGNITUDES LIMITADORAS (II)</div>
+
+        <div style="position:absolute; top:80px; left:51px; font-weight:bold; font-size:20px; color:#000000;">
+          DOSIS EFECTIVA (E)
+        </div>
+
+        <img src="assets/parte2_formula_E.png" alt="E = Sum w_T * H_T" style="position:absolute; top:140px; left:108px; width:132px; height:auto;">
+
+        <div style="position:absolute; top:80px; left:343px; width:540px; border:1px solid #000000; padding:10px 14px; box-sizing:border-box; font-size:14px; line-height:1.35; color:#000000; text-align:left;">
+          <p style="margin:0 0 8px 0;">La Dosis Efectiva “E” es la suma de las dosis ponderadas en todos los tejidos y órganos del cuerpo especificados en la normativa (RPSRDEI Anexo I) a causa de irradiaciones internas y externas.</p>
+          <p style="margin:0 0 6px 0;">- H<sub>T</sub> es la dosis equivalente en un tejido u órgano T</p>
+          <p style="margin:0;">- w<sub>T</sub> es el factor de ponderación del tejido.</p>
+        </div>
+
+        <div style="position:absolute; top:230px; left:34px; width:260px; border:1px solid #000000; padding:8px 12px; box-sizing:border-box; font-size:15px; color:#000000; text-align:left;">
+          Unidad SI: Sievert (Sv).
+        </div>
+
+        <div style="position:absolute; top:314px; left:85px; font-weight:bold; font-size:15px; color:#000000;">
+          FACTORES DE PONDERACION DEL TEJIDO (RPSRDEI 2022 Anexo I)
+        </div>
+
+        <table class="std-table" style="position:absolute; top:342px; left:76px; width:706px; font-size:13.5px; line-height:1.25;">
+          <thead>
+            <tr>
+              <th style="text-align:left; width:60%; font-weight:bold;">Tejido / órgano</th>
+              <th style="text-align:center; width:20%; font-weight:bold;">w<sub>T</sub></th>
+              <th style="text-align:center; width:20%; font-weight:bold;">&Sigma;w<sub>T</sub></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Gónadas</td><td style="text-align:center;">0,08</td><td style="text-align:center;">0,08</td></tr>
+            <tr><td>Médula ósea, colon, pulmón, estómago, mama y resto del organismo</td><td style="text-align:center;">0,12</td><td style="text-align:center;">0,72</td></tr>
+            <tr><td>Vejiga, esófago, hígado y tiroides</td><td style="text-align:center;">0,04</td><td style="text-align:center;">0,16</td></tr>
+            <tr><td>Superficie ósea, cerebro, glándulas salivales, piel</td><td style="text-align:center;">0,01</td><td style="text-align:center;">0,04</td></tr>
+          </tbody>
+        </table>
+
+        <div class="footer-line"></div>
+        <img class="footer-logo" src="assets/parte2_10000000000000EF00000098E388084E.jpg" alt="Sacyl">
+        <div class="footer-text">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+        <div class="footer-page">17</div>
+      </section>
+
+<section class="parte2-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+        <div class="header-bar">MAGNITUDES LIMITADORAS (III)</div>
+
+        <div style="position:absolute; top:82px; left:140px; font-weight:bold; font-size:19px; color:#000000;">
+          Magnitudes Limitadoras (Observaciones)
+        </div>
+
+        <div style="position:absolute; top:124px; left:50px; width:840px; font-size:15px; line-height:1.45; color:#000000; text-align:left;">
+          <ul style="list-style-type:none; padding-left:0; margin:0;">
+            <li style="margin-bottom:14px; position:relative; padding-left:24px;">
+              <span style="position:absolute; left:0; color:#000000;">&#9679;</span>
+              Magnitudes para propósitos de <strong>limitación.</strong>
+            </li>
+            <li style="margin-bottom:14px; position:relative; padding-left:24px;">
+              <span style="position:absolute; left:0; color:#000000;">&#9679;</span>
+              <strong>El Reglamento RD 1029/2022 sobre protección de la salud contra los riesgos derivados de la exposición a las radiaciones ionizantes</strong> (B.O.E. nº 305 de 21 de diciembre de 2022) adopta las magnitudes limitadoras definidas por la Comisión Internacional de Protección Radiológica
+              <ul style="list-style-type:none; padding-left:24px; margin:8px 0 0 0;">
+                <li style="margin-bottom:6px; position:relative; padding-left:20px;">
+                  <span style="position:absolute; left:0; color:#000000;">&#9675;</span>
+                  <strong>Dosis equivalente en un órgano T (H<sub>T</sub>)</strong>
+                </li>
+                <li style="position:relative; padding-left:20px;">
+                  <span style="position:absolute; left:0; color:#000000;">&#9675;</span>
+                  <strong>Dosis efectiva : E.</strong>
+                </li>
+              </ul>
+            </li>
+            <li style="margin-bottom:14px; position:relative; padding-left:24px;">
+              <span style="position:absolute; left:0; color:#000000;">&#9679;</span>
+              Las magnitudes limitadoras están basadas en unos factores ponderales de la radiación (w<sub>R</sub>) y de los tejidos (w<sub>T</sub>) tabulados. Estos valores se adoptan de los definidos en las publicaciones del ICRP.
+            </li>
+            <li style="position:relative; padding-left:24px;">
+              <span style="position:absolute; left:0; color:#000000;">&#9679;</span>
+              En nuestra normativa específica en materia de P.R. los factores ponderales de la radiación y el tejido están recogidos en el anexo 1 del RD 1029/2022.
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-line"></div>
+        <img class="footer-logo" src="assets/parte2_10000000000000EF00000098E388084E.jpg" alt="Sacyl">
+        <div class="footer-text">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+        <div class="footer-page">18</div>
+      </section>
+
+<section class="parte2-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+        <div class="header-bar">MAGNITUDES OPERACIONALES (I)</div>
+
+        <div style="position:absolute; top:78px; left:40px; font-weight:bold; font-size:17px; color:#000000;">
+          MAGNITUDES OPERACIONALES PARA LA RADIACIÓN EXTERNA
+        </div>
+
+        <!-- Recuadro negro perimetral border: 1px solid #000; padding: 16px -->
+        <div style="position:absolute; top:120px; left:40px; width:865px; border:1px solid #000000; padding:16px 20px; box-sizing:border-box; font-size:14.5px; line-height:1.45; color:#000000; text-align:left;">
+          <ul style="list-style-type:none; padding-left:0; margin:0;">
+            <li style="margin-bottom:12px; position:relative; padding-left:22px;">
+              <span style="position:absolute; left:0;">•</span>
+              H<sub>T</sub> y E (magnitudes limitadoras vigentes) son imposibles de medir.
+            </li>
+            <li style="margin-bottom:12px; position:relative; padding-left:22px;">
+              <span style="position:absolute; left:0;">•</span>
+              Las “Magnitudes Operacionales” sirven para <u>ESTIMAR</u> de manera razonablemente conservadora a las “magnitudes limitadoras” .
+            </li>
+            <li style="margin-bottom:8px; position:relative; padding-left:22px;">
+              <span style="position:absolute; left:0;">•</span>
+              Las magnitudes relacionadas con la vigilancia radiológica de los Trabajadores Expuestos (TE) a radiaciones ionizantes , actualmente vigentes en nuestra legislación son:
+            </li>
+            <div style="padding-left:60px; margin-bottom:12px; line-height:1.6; font-weight:bold;">
+              Equivalente de Dosis Ambiental H*(d)<br>
+              Equivalente de Dosis Personal H<sub>p</sub>(d)
+            </div>
+            <div style="padding-left:22px; margin-bottom:12px;">
+              Valores distintos de “d” sirven para distinguir dosis equivalente debida a <u>radiación débilmente penetrante</u> y <u>fuertemente penetrante</u>.
+            </div>
+            <li style="position:relative; padding-left:22px;">
+              <span style="position:absolute; left:0;">•</span>
+              H<sub>p</sub>(d) medible con un detector que se lleva en la superficie del cuerpo (dosímetro) y cubierto con espesores apropiados de material equivalente a tejido.
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-line"></div>
+        <img class="footer-logo" src="assets/parte2_10000000000000EF00000098E388084E.jpg" alt="Sacyl">
+        <div class="footer-text">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+        <div class="footer-page">19</div>
+      </section>
+
+<section class="parte2-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+        <div class="header-bar">MAGNITUDES OPERACIONALES (II)</div>
+
+        <div style="position:absolute; top:78px; left:40px; font-weight:bold; font-size:17px; color:#000000;">
+          MAGNITUDES OPERACIONALES PARA LA VIGILANCIA DE ÁREA
+        </div>
+
+        <div style="position:absolute; top:125px; left:40px; width:860px; border:1px solid #000000; padding:12px 16px; box-sizing:border-box; font-size:14.5px; line-height:1.4; color:#000000; text-align:left;">
+          <p style="margin:0 0 10px 0;"><strong>Equivalente de dosis ambiental H*(d).-</strong> El equivalente de dosis ambiental, H*(d), en un punto de un campo de radiación, es el equivalente de dosis que se produciría por el correspondiente campo alineado en la esfera ICRU a una profundidad d sobre el radio opuesto a la dirección del campo alineado.</p>
+          <p style="margin:0;"><strong>Unidad S.I. :</strong> Sievert</p>
+        </div>
+
+        <div style="position:absolute; top:295px; left:45px; width:850px; font-size:14.5px; line-height:1.45; color:#000000; text-align:left;">
+          <p style="margin:0 0 8px 0;">• Para distintos valores de la profundidad “d” tenemos:</p>
+          <div style="padding-left:30px; text-align:left;">
+            <p style="margin:0 0 6px 0;">– Para radiación débilmente penetrante se recomienda una profundidad de:</p>
+            <div style="padding-left:25px; margin-bottom:8px; text-align:left;">
+              <p style="margin:0 0 4px 0;">• d=0.07 mm. para la piel <strong>H* (0,07)</strong></p>
+              <p style="margin:0;">• d=3 mm. para el cristalino <strong>H* (3)</strong></p>
+            </div>
+            <p style="margin:0 0 6px 0;">– Para radiación fuertemente penetrante se recomienda una profundidad de:</p>
+            <div style="padding-left:25px; text-align:left;">
+              <p style="margin:0;">• d=10 mm. <strong>H*(10)</strong></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-line"></div>
+        <img class="footer-logo" src="assets/parte2_10000000000000EF00000098E388084E.jpg" alt="Sacyl">
+        <div class="footer-text">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+        <div class="footer-page">20</div>
+      </section>
+
+<section class="parte2-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+        <div class="header-bar">MAGNITUDES OPERACIONALES (III)</div>
+
+        <div style="position:absolute; top:78px; left:40px; font-weight:bold; font-size:17px; color:#000000;">
+          MAGNITUDES OPERACIONALES PARA LA VIGILANCIA INDIVIDUAL
+        </div>
+
+        <div style="position:absolute; top:125px; left:40px; width:860px; border:1px solid #000000; padding:12px 16px; box-sizing:border-box; font-size:14.5px; line-height:1.4; color:#000000; text-align:left;">
+          <p style="margin:0 0 10px 0;"><strong>Equivalente de dosis personal H<sub>p</sub>(d).-</strong> Es el equivalente de dosis en tejido blando situado por debajo de un pto. especificado sobre el cuerpo y a una profundidad apropiada d.</p>
+          <p style="margin:0;"><strong>Unidad S.I. :</strong> Sievert</p>
+        </div>
+
+        <div style="position:absolute; top:270px; left:45px; width:850px; font-size:14.5px; line-height:1.45; color:#000000; text-align:left;">
+          <p style="margin:0 0 8px 0;">• Para distintos valores de la profundidad “d”tenemos:</p>
+          <div style="padding-left:30px; text-align:left;">
+            <p style="margin:0 0 6px 0;">– Para radiación debilmente penetrante se recomienda una profundidad de:</p>
+            <div style="padding-left:25px; margin-bottom:8px; text-align:left;">
+              <p style="margin:0 0 4px 0;">• d=0.07 mm. para la piel <strong>H<sub>p</sub> (0,07)</strong></p>
+              <p style="margin:0;">• d=3 mm. para el cristalino <strong>H<sub>p</sub> (3)</strong></p>
+            </div>
+            <p style="margin:0 0 6px 0;">– Para radiación fuertemente penetrante se recomienda una profundidad de:</p>
+            <div style="padding-left:25px; text-align:left;">
+              <p style="margin:0;">• d=10 mm. <strong>H<sub>p</sub>(10)</strong></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-line"></div>
+        <img class="footer-logo" src="assets/parte2_10000000000000EF00000098E388084E.jpg" alt="Sacyl">
+        <div class="footer-text">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+        <div class="footer-page">21</div>
+      </section>
+
+<section class="parte2-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+        <div class="header-bar" style="height:99px; line-height:1.2; padding-top:18px; box-sizing:border-box;">
+          DOSIS EFECTIVA PROMEDIO ANUAL PARA UN<br>INDIVIDUO
+        </div>
+
+        <img src="assets/parte2_slide07_chart.png" alt="Dosis promedio anual que recibe una persona (mSv)" style="position:absolute; top:115px; left:142px; width:676px; height:480px; object-fit:contain;">
+
+        <div class="footer-line"></div>
+        <img class="footer-logo" src="assets/parte2_10000000000000EF00000098E388084E.jpg" alt="Sacyl">
+        <div class="footer-text">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+        <div class="footer-page">22</div>
+      </section>
+
+<section class="parte2-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+        <div class="header-bar">DOSIMETRÍA A PACIENTES (I)</div>
+
+        <div style="position:absolute; top:78px; left:188px; font-weight:bold; font-size:18px; color:#000000;">
+          Dosis integral (Energía Impartida)
+        </div>
+
+        <!-- Marco rectangular negro con border: 1px solid #000; padding: 12px -->
+        <div style="position:absolute; top:112px; left:45px; width:870px; border:1px solid #000000; padding:12px 14px; box-sizing:border-box; font-size:13.5px; line-height:1.35; color:#000000; text-align:left;">
+          <p style="margin:0 0 6px 0; text-indent:-15px; padding-left:15px;">•Dado que la dosis absorbida se define como la energía depositada en un elemento de masa, la energía total impartida por la radiación al interaccionar con el material, se podrá calcular como la suma de los productos de las dosis en cada elemento de masa por los valores de esos elementos de masa. Si la dosis es constante en todo el material, la dosis integrada es el producto de la dosis por la masa irradiada.</p>
+          <p style="margin:0; text-indent:-15px; padding-left:15px;">•La dosis integral, o energía impartida, se mide en julios (J).</p>
+        </div>
+
+        <div style="position:absolute; top:288px; left:145px; font-weight:bold; font-size:18px; color:#000000;">
+          Dosis a la entrada del paciente (En superficie)
+        </div>
+
+        <div style="position:absolute; top:322px; left:45px; width:870px; font-size:13.5px; line-height:1.35; color:#000000; text-align:left;">
+          <p style="margin:0 0 6px 0; text-indent:-15px; padding-left:15px;">•Se debe conocer adicionalmente la contribución de la radiación retrodispersada en un punto cercano de la superficie de la piel, (Factor de Retrodispersión) que tiene en cuenta el "exceso" de dosis que aparece como consecuencia de los fotones retrodispersados en el tejido.</p>
+          <p style="margin:0 0 4px 0; font-weight:bold;">Factor de retrodispersión.-</p>
+          <p style="margin:0 0 4px 0; text-indent:-15px; padding-left:15px;">•Varía con la energía de los fotones y con el tamaño de área irradiada (1,0 - 1,8)</p>
+          <p style="margin:0 0 4px 0; text-indent:-15px; padding-left:15px;">• Está Tabulado en función del kVp, campo y filtración del tubo de rayos X)</p>
+          <p style="margin:0; text-indent:-15px; padding-left:15px;">•El valor de la Dosis a la entrada no siempre es muy indicativo del riesgo al que se expondrá el paciente. Un haz muy poco filtrado puede dar alta dosis a la entrada y poca dosis en profundidad..</p>
+        </div>
+
+        <div class="footer-line"></div>
+        <img class="footer-logo" src="assets/parte2_10000000000000EF00000098E388084E.jpg" alt="Sacyl">
+        <div class="footer-text">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+        <div class="footer-page">23</div>
+      </section>
+
+<section class="parte2-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+        <div class="header-bar">DOSIMETRÍA A PACIENTES (II)</div>
+
+        <div style="position:absolute; top:75px; left:306px; font-weight:bold; font-size:18px; color:#000000;">
+          <u>Dosis en órganos</u>
+        </div>
+
+        <div style="position:absolute; top:108px; left:60px; width:840px; font-size:13.5px; line-height:1.35; color:#000000; text-align:left;">
+          <p style="margin:0 0 6px 0; text-indent:-15px; padding-left:15px;">•Permite estimar con precisión el riesgo que tendrá el paciente como consecuencia de la irradiación.</p>
+          <p style="margin:0 0 6px 0; text-indent:-15px; padding-left:15px;">•En radiodiagnóstico, las diferentes edades de los pacientes y las altas dosis que se pueden alcanzar en algunos órganos, hace que éste parámetro sea el utilizado por la mayoría de los países de la CE para la estimación del riesgo.</p>
+          <p style="margin:0 0 6px 0;">Estas dosis sólo se pueden medir directamente en órganos superficiales como mama, tiroides o testículos.</p>
+          <p style="margin:0;">Para la medida directa de <u>dosis en órganos</u> profundos, tales como útero o pulmón, hay que recurrir al uso de maniquíes que simulan el cuerpo humano y sobre los que se hace una reproducción de la exploración radiológica con idéntico protocolo al que se utilizará para pacientes.</p>
+        </div>
+
+        <img src="assets/parte2_1000000000000272000001A0DA7F0D00.png" alt="Maniquí dosimetría" style="position:absolute; top:355px; left:58px; width:364px; height:235px; object-fit:contain;">
+        <img src="assets/parte2_100000000000025100000128D442083C.png" alt="Maniquí y detectores" style="position:absolute; top:373px; left:450px; width:428px; height:208px; object-fit:contain;">
+
+        <!-- Flecha diagonal roja desde 'dosis en órganos' hacia la columna Organs de la tabla derecha -->
+        <svg style="position:absolute; top:0; left:0; width:960px; height:700px; pointer-events:none; z-index:10;">
+          <defs>
+            <marker id="arrow9" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#800000"/>
+            </marker>
+          </defs>
+          <line x1="421" y1="275" x2="494" y2="416" stroke="#800000" stroke-width="2.5" marker-end="url(#arrow9)"/>
+        </svg>
+
+        <div class="footer-line"></div>
+        <img class="footer-logo" src="assets/parte2_10000000000000EF00000098E388084E.jpg" alt="Sacyl">
+        <div class="footer-text">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+        <div class="footer-page">24</div>
+      </section>
+
+<section class="parte2-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+        <div class="header-bar">DOSIMETRÍA A PACIENTES (III)</div>
+
+        <div style="position:absolute; top:82px; left:63px; font-weight:bold; font-size:17.5px; color:#000000;">
+          Ej:Dosis típicas en mGy en exámenes TC (Shrimpton et al. 1991)
+        </div>
+
+        <!-- Tabla estilo abierto científico sin líneas verticales y números en negrita -->
+        <table class="open-table" style="position:absolute; top:125px; left:63px; width:834px; font-size:13px; line-height:1.2;">
+          <thead>
+            <tr>
+              <th style="text-align:left; width:22%;">Examen TC</th>
+              <th style="text-align:center; width:13%;">Ojos</th>
+              <th style="text-align:center; width:13%;">Tiroides</th>
+              <th style="text-align:center; width:13%;">Torax</th>
+              <th style="text-align:center; width:13%;">Útero</th>
+              <th style="text-align:center; width:13%;">Ovarios</th>
+              <th style="text-align:center; width:13%;">Gónadas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Cabeza</td><td style="text-align:center; font-weight:bold;">50</td><td style="text-align:center; font-weight:bold;">1.9</td><td style="text-align:center; font-weight:bold;">0.03</td><td style="text-align:center; font-weight:bold;">*</td><td style="text-align:center; font-weight:bold;">*</td><td style="text-align:center; font-weight:bold;">*</td></tr>
+            <tr><td>Cervicales</td><td style="text-align:center; font-weight:bold;">0.62</td><td style="text-align:center; font-weight:bold;">44</td><td style="text-align:center; font-weight:bold;">0.09</td><td style="text-align:center; font-weight:bold;">*</td><td style="text-align:center; font-weight:bold;">*</td><td style="text-align:center; font-weight:bold;">*</td></tr>
+            <tr><td>Columna (r.toracica)</td><td style="text-align:center; font-weight:bold;">0.04</td><td style="text-align:center; font-weight:bold;">0.46</td><td style="text-align:center; font-weight:bold;">28</td><td style="text-align:center; font-weight:bold;">0.02</td><td style="text-align:center; font-weight:bold;">0.02</td><td style="text-align:center; font-weight:bold;">*</td></tr>
+            <tr><td>Torax</td><td style="text-align:center; font-weight:bold;">0.14</td><td style="text-align:center; font-weight:bold;">2.3</td><td style="text-align:center; font-weight:bold;">21</td><td style="text-align:center; font-weight:bold;">0.06</td><td style="text-align:center; font-weight:bold;">0.08</td><td style="text-align:center; font-weight:bold;">*</td></tr>
+            <tr><td>Abdomen</td><td style="text-align:center; font-weight:bold;">*</td><td style="text-align:center; font-weight:bold;">0.05</td><td style="text-align:center; font-weight:bold;">0.72</td><td style="text-align:center; font-weight:bold;">8.0</td><td style="text-align:center; font-weight:bold;">8.0</td><td style="text-align:center; font-weight:bold;">0.7</td></tr>
+            <tr><td>L. Spine</td><td style="text-align:center; font-weight:bold;">*</td><td style="text-align:center; font-weight:bold;">0.01</td><td style="text-align:center; font-weight:bold;">0.13</td><td style="text-align:center; font-weight:bold;">2.4</td><td style="text-align:center; font-weight:bold;">2.7</td><td style="text-align:center; font-weight:bold;">0.06</td></tr>
+            <tr><td>Pelvis</td><td style="text-align:center; font-weight:bold;">*</td><td style="text-align:center; font-weight:bold;">*</td><td style="text-align:center; font-weight:bold;">0.03</td><td style="text-align:center; font-weight:bold;">26</td><td style="text-align:center; font-weight:bold;">23</td><td style="text-align:center; font-weight:bold;">1.7</td></tr>
+          </tbody>
+        </table>
+
+        <div style="position:absolute; top:540px; left:70px; font-size:13.5px; color:#000000;">
+          El símbolo * indica que la dosis es &lt; 0.005 mGy
+        </div>
+
+        <div class="footer-line"></div>
+        <img class="footer-logo" src="assets/parte2_10000000000000EF00000098E388084E.jpg" alt="Sacyl">
+        <div class="footer-text">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+        <div class="footer-page">25</div>
+      </section>
+
+<section class="parte2-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+        <div class="header-bar">DOSIMETRÍA A PACIENTES (IV)</div>
+
+        <div style="position:absolute; top:85px; left:70px; font-weight:bold; font-size:18px; color:#000000;">
+          Ej: Dosis Efectiva en CT y Exámenes Radiográficos
+        </div>
+
+        <!-- Tabla abierta sin bordes verticales, fuente incrementada a 18px y números en negrita -->
+        <table class="open-table" style="position:absolute; top:150px; left:70px; width:820px; font-size:18px; line-height:1.45;">
+          <thead>
+            <tr>
+              <th style="text-align:left; width:26%;">Tomografia computerizada</th>
+              <th style="text-align:center; width:24%;">Dosis efectiva (mSv)</th>
+              <th style="text-align:left; width:26%;">Examenes Radiográficos</th>
+              <th style="text-align:center; width:24%;">Dosis efectiva (mSv)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Cabeza</td><td style="text-align:center; font-weight:bold;">2</td><td>Cráneo</td><td style="text-align:center; font-weight:bold;">0.07</td></tr>
+            <tr><td>Tórax</td><td style="text-align:center; font-weight:bold;">8</td><td>Torax</td><td style="text-align:center; font-weight:bold;">0.02</td></tr>
+            <tr><td>Abdomen</td><td style="text-align:center; font-weight:bold;">10-20</td><td>Abdomen</td><td style="text-align:center; font-weight:bold;">1.0</td></tr>
+            <tr><td>Pelvis</td><td style="text-align:center; font-weight:bold;">10-20</td><td>Pelvis</td><td style="text-align:center; font-weight:bold;">0.7</td></tr>
+          </tbody>
+        </table>
+
+        <!-- Línea horizontal divisoria previa al pie de página -->
+        <div style="position:absolute; top:490px; left:70px; width:820px; height:1px; background-color:#000000;"></div>
+
+        <div class="footer-line"></div>
+        <img class="footer-logo" src="assets/parte2_10000000000000EF00000098E388084E.jpg" alt="Sacyl">
+        <div class="footer-text">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+        <div class="footer-page">26</div>
+      </section>
+
+<section class="parte2-slide" style="width:960px;height:700px;background-color:#ffffff;overflow:hidden;">
+        <div class="header-bar">DOSIMETRÍA A PACIENTES (V)</div>
+
+        <div style="position:absolute; top:78px; left:41px; width:870px; font-weight:bold; font-size:16px; line-height:1.25; color:#000000;">
+          Dosis efectivas características de la radiación ionizante procedente de las técnicas habituales de diagnóstico por imagen
+        </div>
+
+        <img src="assets/parte2_1000000000000174000001B6D63499AC.jpg" alt="Técnicas habituales de diagnóstico por imagen" style="position:absolute; top:150px; left:58px; width:338px; height:auto;">
+
+        <!-- 4 imágenes en la derecha -->
+        <img src="assets/parte2_1000000000000110000000B6FCFC9583.jpg" alt="Tórax radiografía" style="position:absolute; top:170px; left:415px; width:235px; height:auto;">
+        <img src="assets/parte2_10000000000000FD000000BE9B25132C.jpg" alt="Cortes TC craneal" style="position:absolute; top:168px; left:670px; width:225px; height:auto;">
+        <img src="assets/parte2_1000000000000072000000DB92428390.jpg" alt="Pelvis / abdomen" style="position:absolute; top:365px; left:510px; width:95px; height:auto;">
+        <img src="assets/parte2_1000000000000100000000D63A8E5A9C.jpg" alt="TAC / TC" style="position:absolute; top:360px; left:665px; width:230px; height:auto;">
+
+        <!-- Flechas SVG corregidas -->
+        <svg style="position:absolute; top:0; left:0; width:960px; height:700px; pointer-events:none; z-index:10;">
+          <defs>
+            <marker id="arrow12" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#800000"/>
+            </marker>
+          </defs>
+          <!-- Flecha 1: desde 'Radiografía de tórax...' hacia imagen de tórax -->
+          <line x1="355" y1="330" x2="450" y2="260" stroke="#800000" stroke-width="2.7" marker-end="url(#arrow12)"/>
+          <!-- Flecha 2: desde 'TC de cabeza y cuello' en diagonal hacia cortes de TC craneal superior derecho -->
+          <line x1="355" y1="385" x2="665" y2="270" stroke="#800000" stroke-width="2.7" marker-end="url(#arrow12)"/>
+          <!-- Flecha 3: desde 'Enema de bario / pelvis...' hacia imagen pelvis/abdomen -->
+          <line x1="355" y1="511" x2="505" y2="511" stroke="#800000" stroke-width="2.7" marker-end="url(#arrow12)"/>
+        </svg>
+
+        <div class="footer-line"></div>
+        <img class="footer-logo" src="assets/parte2_10000000000000EF00000098E388084E.jpg" alt="Sacyl">
+        <div class="footer-text">Formación de Residentes en Protección Radiológica, Complejo Asistencial de Zamora, Jun. 2024</div>
+        <div class="footer-page">27</div>
+      </section>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      width: 960,
+      height: 700,
+      margin: 0.04,
+      controls: true,
+      progress: true,
+      center: false,
+      hash: true,
+      transition: 'none'
+    });
+  </script>
+</body>
 </html>
